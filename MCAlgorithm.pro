@@ -11,11 +11,11 @@ TARGET      = MARCHING_CUBES_ALGORITHM
 TEMPLATE    = app
 
 SOURCES += main.cpp \
-    OpenGlWindow.cpp \
+    OpenGLWindow.cpp \
     MCWindow.cpp \
     marchingCubes.cpp
 
-HEADERS += OpenGlWindow.h \
+HEADERS += OpenGLWindow.h \
     MCWindow.h \
     marchingCubes.h \
     marchingCubesData.h

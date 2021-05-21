@@ -1,7 +1,7 @@
 #include "OpenGLWindow.h"
 
 OpenGLWindow::OpenGLWindow(QWindow *parent)
-    : QWindow(parent), m_animating(false), m_device(nullptr), m_context(nullptr)
+    : QWindow(parent), device(nullptr), context(nullptr)
 {
     setSurfaceType(QWindow::OpenGLSurface);
 }
@@ -17,15 +17,15 @@ void OpenGLWindow::initialize()
 
 void OpenGLWindow::render()
 {
-    if (!m_device)
-        m_device = new QOpenGLPaintDevice;
+    if (!device)
+        device = new QOpenGLPaintDevice;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_device->setSize(size() * devicePixelRatio());
-    m_device->setDevicePixelRatio(devicePixelRatio());
+    device->setSize(size() * devicePixelRatio());
+    device->setDevicePixelRatio(devicePixelRatio());
 
-    QPainter painter(m_device);
+    QPainter painter(device);
     render(&painter);
 }
 
@@ -60,15 +60,15 @@ void OpenGLWindow::renderNow()
 
     bool needsInitialize = false;
 
-    if (!m_context) {
-        m_context = new QOpenGLContext(this);
-        m_context->setFormat(requestedFormat());
-        m_context->create();
+    if (!context) {
+        context = new QOpenGLContext(this);
+        context->setFormat(requestedFormat());
+        context->create();
 
         needsInitialize = true;
     }
 
-    m_context->makeCurrent(this);
+    context->makeCurrent(this);
 
     if (needsInitialize) {
         initializeOpenGLFunctions();
@@ -77,16 +77,6 @@ void OpenGLWindow::renderNow()
 
     render();
 
-    m_context->swapBuffers(this);
+    context->swapBuffers(this);
 
-    if (m_animating)
-        renderLater();
-}
-
-void OpenGLWindow::setAnimating(bool animating)
-{
-    m_animating = animating;
-
-    if (animating)
-        renderLater();
 }

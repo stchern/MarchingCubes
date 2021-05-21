@@ -1,41 +1,31 @@
 #ifndef MARCHING_CUBES_DATA_H
 #define MARCHING_CUBES_DATA_H
 
-#include <QOpenGLFunctions>
-#include <QtMath>
-
-#include <iostream>
-#include <iomanip>
-
-using namespace std;
-
-//These tables are used so that everything can be done in little loops that you can look at all at once
-// rather than in pages and pages of unrolled code.
-
-//a2fVertexOffset lists the positions, relative to vertex0, of each of the 8 vertices of a cube
-constexpr GLfloat VertexOffset[8][3] =
+//список смещения вершин в кубе, относительно вершины (0,0,0)
+constexpr float VertexOffset[8][3] =
 {
         {0.0, 0.0, 0.0},{1.0, 0.0, 0.0},{1.0, 1.0, 0.0},{0.0, 1.0, 0.0},
         {0.0, 0.0, 1.0},{1.0, 0.0, 1.0},{1.0, 1.0, 1.0},{0.0, 1.0, 1.0}
 };
 
-//a2iEdgeConnection lists the index of the endpoint vertices for each of the 12 edges of the cube
-constexpr GLint EdgeConnection[12][2] =
+//список смежности ребер куба
+constexpr int EdgeConnection[12][2] =
 {
         {0,1}, {1,2}, {2,3}, {3,0},
         {4,5}, {5,6}, {6,7}, {7,4},
         {0,4}, {1,5}, {2,6}, {3,7}
 };
 
-//a2fEdgeDirection lists the direction vector (vertex1-vertex0) for each edge in the cube
-constexpr GLfloat EdgeDirection[12][3] =
+//список направляющих векторов для ребер куба
+constexpr float EdgeDirection[12][3] =
 {
         {1.0, 0.0, 0.0},{0.0, 1.0, 0.0},{-1.0, 0.0, 0.0},{0.0, -1.0, 0.0},
         {1.0, 0.0, 0.0},{0.0, 1.0, 0.0},{-1.0, 0.0, 0.0},{0.0, -1.0, 0.0},
         {0.0, 0.0, 1.0},{0.0, 0.0, 1.0},{ 0.0, 0.0, 1.0},{0.0,  0.0, 1.0}
 };
 
-constexpr GLint CubeEdgeFlags[256]=
+// таблица пересечений ребер куба
+constexpr int EdgeTable[256]=
 {
         0x000, 0x109, 0x203, 0x30a, 0x406, 0x50f, 0x605, 0x70c, 0x80c, 0x905, 0xa0f, 0xb06, 0xc0a, 0xd03, 0xe09, 0xf00,
         0x190, 0x099, 0x393, 0x29a, 0x596, 0x49f, 0x795, 0x69c, 0x99c, 0x895, 0xb9f, 0xa96, 0xd9a, 0xc93, 0xf99, 0xe90,
@@ -55,7 +45,8 @@ constexpr GLint CubeEdgeFlags[256]=
         0xf00, 0xe09, 0xd03, 0xc0a, 0xb06, 0xa0f, 0x905, 0x80c, 0x70c, 0x605, 0x50f, 0x406, 0x30a, 0x203, 0x109, 0x000
 };
 
-constexpr GLint TriangleConnectionTable[256][16] =
+// таблица вершин куба, образующих треугольники
+constexpr int TriangleTable[256][16] =
 {
         {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
         {0, 8, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
