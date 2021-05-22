@@ -13,5 +13,5 @@ void main(void)
     float specularAmount = 0.3;
     float diffuseAmount = 0.75;
     float ambientAmount = 1.0 - diffuseAmount;
-    gl_FragColor = vec4(color * ambientAmount + color * diffuse * diffuseAmount + specular * specularAmount, 1.0);//+ specular * specularAmount, 1.0);
+    gl_FragColor = vec4(color * ambientAmount + color * diffuse * diffuseAmount + specular * specularAmount, 1.0);
 }
