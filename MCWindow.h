@@ -5,9 +5,7 @@
 #include <QOpenGLBuffer>
 #include <QMatrix4x4>
 #include <QMouseEvent>
-#include <QtMath>
 #include <QKeyEvent>
-#include <QVector3D>
 #include <QScreen>
 
 #include "OpenGLWindow.h"
