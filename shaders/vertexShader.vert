@@ -11,6 +11,6 @@ out vec3 m_normal;
 void main(void)
 {
     m_vertex = (modelViewMatrix * vec4(vertex, 1.0)).xyz;
-    m_normal = (normalMatrix * vec4(normal, 1.0)).xyz; 
+    m_normal = (normalMatrix * vec4(normal, 0.0)).xyz; 
     gl_Position = projectionMatrix * vec4(m_vertex, 1.0);
 }

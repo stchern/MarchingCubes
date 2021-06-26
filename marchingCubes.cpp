@@ -25,7 +25,7 @@ float MarchingCubes::sample2(const float &x, const float &y, const float &z){
 //поверхность эллиптического цилиндра
 float MarchingCubes::sample3(const float &x, const float &y, const float &z){
     
-    float a = 3.0, b = 3.0, scale = 7.0;
+    float a = 2.0, b = 2.0, scale = 8.0;
     float dx = scale * (0.5-x),  dy = scale * (0.5-y);
     
     return (dx * dx) / (a * a) + (dy * dy) / (b * b) - 1;
@@ -43,22 +43,22 @@ float MarchingCubes::sample4(const float &x, const float &y, const float &z){
 //поверхность тора
 float MarchingCubes::sample5(const float &x, const float &y, const float &z){
 
-    float a = 2.5, scale = 7.0;
+    float a = 2.0, scale = 8.0;
     float dx = scale * (0.5-x),  dy = scale * (0.5-y),  dz = scale * (0.5-z);
 
     return(pow(sqrt(dx * dx + dy * dy) - a,2) + dz * dz);
 }
 
 //нахождение ближайшей точки пересечения поверхности с кубом
-float MarchingCubes::getOffset(const float &value1, const float &value2, const float &valueDesired){
+float MarchingCubes::getOffset(const float &value1, const float &value2, const float &isolevel){
 
     double delta = value2 - value1;
 
     if(delta == 0.0)
     {
-            return 0.5;
+        return 0.5;
     }
-    return (valueDesired - value1)/delta;
+    return (isolevel - value1)/delta;
 }
 
 //нахождение вектора-градиента в точке
@@ -97,7 +97,7 @@ void MarchingCubes::marchingCubes(int nsample,float isolevel){
         } 
         case 5:{
             sample = &MarchingCubes::sample5;
-            isolevel = 3.0;
+            isolevel = 2.0;
             break;
         }   
         default:

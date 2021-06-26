@@ -33,7 +33,7 @@ private:
     
     void marchCube(const float &x, const float &y, const float &z, const float &scale, const float &Tv,QTextStream& fileStream);
    
-    float getOffset(const float &value1, const float &value2, const float &valueDesired);
+    float getOffset(const float &value1, const float &value2, const float &isolevel);
     void  getNormal(QVector3D& normal, const float &x, const float &y, const float &z);
 
     int dataSetSize;

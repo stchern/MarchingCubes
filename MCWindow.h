@@ -6,7 +6,7 @@
 #include <QMatrix4x4>
 #include <QMouseEvent>
 #include <QKeyEvent>
-#include <QScreen>
+#include <QScreen
 
 #include "OpenGLWindow.h"
 #include "marchingCubes.h"

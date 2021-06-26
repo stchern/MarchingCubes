@@ -15,7 +15,7 @@ void MC_Window::initialize()
 {   
     mca = new MarchingCubes(100);
     mca->marchingCubes(nSample);
-   
+    
     nTriangles = mca->vertices.size()/3;
     int dataSize = mca->vertices.size() * sizeof(float);
 
