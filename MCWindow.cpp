@@ -14,6 +14,7 @@ MC_Window::MC_Window(QWindow *parent): OpenGLWindow(parent),
 void MC_Window::initialize()
 {   
     mca = new MarchingCubes(100);
+    mca->createObjFile(true);
     mca->marchingCubes(nSample);
     
     nTriangles = mca->vertices.size()/3;
