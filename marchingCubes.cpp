@@ -97,7 +97,7 @@ void MarchingCubes::marchingCubes(int nsample,float isolevel){
         } 
         case 5:{
             sample = &MarchingCubes::sample5;
-            isolevel = 2.0;
+            isolevel = 2.1;
             break;
         }   
         default:
